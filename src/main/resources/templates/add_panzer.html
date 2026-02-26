@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <form th:action="@{/panzer/add}" th:object="${panzer}" method="post">
+
+        <input type="text"
+               th:field="*{name}"
+               class="form-control"
+               placeholder="Panzer Name">
+        <input type="hidden" th:field="*{id}"> // damit der Panzer nicht die ID 0  weil sonst wird ein Panzer neu hinzugefügt
+
+        <label>Weight</label>
+        <input type="number"
+               th:field="*{weight}"
+               class="form-control"
+               step="any">
+        <input type="submit" class="form-control" value="Save">
+    </form>
+</div>
+
+</body>
+</html>

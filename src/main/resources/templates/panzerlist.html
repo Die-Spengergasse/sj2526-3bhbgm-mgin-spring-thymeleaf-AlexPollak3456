@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>name</th>
+            <th>weight</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${panzer}">
+            <td th:text="${p.name}"></td>
+            <td th:text="${p.weight}"></td>
+            // erzeugt den link wo man den panzer editieren kann
+            <td>
+                <a th:href="@{/panzer/edit(id=${p.id})}">Edit Panzer</a>
+            </td>
+            // erzeugt den link wo man den panzer löschen kann
+            <td>
+                <a th:href="@{/panzer/delete(id=${p.id})}">Delete Panzer</a>
+            </td>
+      
+        </tr>
+        </tbody>
+
+    </table>
+
+    <p>
+        <a href="/panzer/add">new panzer</a>
+    </p>
+</div>
+
+</body>
+</html>
