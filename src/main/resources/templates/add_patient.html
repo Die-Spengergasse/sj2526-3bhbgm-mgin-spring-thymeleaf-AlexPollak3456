@@ -7,10 +7,29 @@
 </head>
 <body>
     <div class="container">
+        <h2>Neuen Patienten registrieren</h2>
         <form th:action="@{/patient/add}" th:object="${patient}" method="post">
-            <input type="text" th:field="*{name}" class="form-control" placeholder="patient name">
-            birth date <input type="date" th:field="*{birth}" class="form-control">
-            <input type="submit" class="form-control" value="Save">
+            <label>SV-Nummer</label>
+            <input type="text" th:field="*{ssn}" class="form-control" placeholder="Sozialversicherungsnummer" required>
+
+            <label>Vorname</label>
+            <input type="text" th:field="*{firstName}" class="form-control" placeholder="Vorname" required>
+
+            <label>Nachname</label>
+            <input type="text" th:field="*{lastName}" class="form-control" placeholder="Nachname" required>
+
+            <label>Geschlecht</label>
+            <select th:field="*{gender}" class="form-control" required>
+                <option th:value="MALE">Männlich</option>
+                <option th:value="FEMALE">Weiblich</option>
+                <option th:value="DIVERSE">Divers</option>
+            </select>
+
+            <label>Geburtsdatum</label>
+            <input type="date" th:field="*{birthDate}" class="form-control" required>
+
+            <br>
+            <input type="submit" class="btn btn-primary" value="Speichern">
         </form>
     </div>
 </body>

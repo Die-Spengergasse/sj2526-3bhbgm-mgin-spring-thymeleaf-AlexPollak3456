@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerät anlegen/bearbeiten</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .container { max-width: 720px; }
+        label { margin-top: 10px; }
+    </style>
+    <script>
+        function setActionToAddIfMissing(e){
+            var f = document.getElementById('deviceForm');
+            if(!f.action || f.action.endsWith('/device/add')) return true;
+            return true;
+        }
+    </script>
+    </head>
+<body>
+<div class="container">
+    <h2>Gerät anlegen/bearbeiten</h2>
+    <form id="deviceForm" th:action="@{/device/add}" th:object="${device}" method="post" onsubmit="return setActionToAddIfMissing(event)">
+        <label>Bezeichnung</label>
+        <input type="text" th:field="*{designation}" class="form-control" placeholder="z.B. MR-1" required>
+
+        <label>Art des Geräts</label>
+        <select th:field="*{type}" class="form-control" required>
+            <option th:each="t : ${types}" th:value="${t}" th:text="${t}"></option>
+        </select>
+
+        <label>Standort (Raum)</label>
+        <input type="text" th:field="*{room}" class="form-control" placeholder="z.B. R234" required>
+
+        <br>
+        <input type="submit" class="btn btn-primary" value="Speichern">
+        <a href="/device/list" class="btn btn-default">Abbrechen</a>
+    </form>
+</div>
+</body>
+</html>

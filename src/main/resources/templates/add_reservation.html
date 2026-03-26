@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Neue Reservierung</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Neue Reservierung</h2>
+    <form th:action="@{/reservation/add}" th:object="${reservation}" method="post">
+        <div class="row">
+            <div class="col-sm-6">
+                <label>Patient</label>
+                <select name="patientId" class="form-control" required>
+                    <option value="">-- bitte wählen --</option>
+                    <option th:each="p : ${patients}" th:value="${p.id}" th:text="${p.lastName + ' ' + p.firstName + ' (' + p.ssn + ')'}"></option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <label>Gerät</label>
+                <select name="deviceId" class="form-control" required>
+                    <option value="">-- bitte wählen --</option>
+                    <option th:each="d : ${devices}" th:value="${d.id}" th:text="${d.designation + ' / ' + d.type + ' / ' + d.room}"></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <label>Beginn</label>
+                <input type="datetime-local" th:field="*{startDateTime}" class="form-control" required>
+            </div>
+            <div class="col-sm-6">
+                <label>Ende</label>
+                <input type="datetime-local" th:field="*{endDateTime}" class="form-control" required>
+            </div>
+        </div>
+
+        <label>Körperregion</label>
+        <select th:field="*{bodyRegion}" class="form-control" required>
+            <option th:each="r : ${regions}" th:value="${r}" th:text="${r}"></option>
+        </select>
+
+        <label>Kommentar</label>
+        <textarea th:field="*{comment}" class="form-control" rows="3" placeholder="optionaler Kommentar"></textarea>
+
+        <br>
+        <input type="submit" class="btn btn-success" value="Reservieren">
+        <a href="/device/list" class="btn btn-default">Zur Geräteliste</a>
+    </form>
+</div>
+</body>
+</html>

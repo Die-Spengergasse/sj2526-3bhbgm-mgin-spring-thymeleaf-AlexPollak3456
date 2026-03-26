@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservierungen</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Reservierungen für <span th:text="${device.designation}"></span> (<span th:text="${device.type}"></span>, Raum <span th:text="${device.room}"></span>)</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Körperregion</th>
+            <th>Beginn</th>
+            <th>Ende</th>
+            <th>Kommentar</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="r : ${reservations}">
+            <td th:text="${r.patient.lastName + ' ' + r.patient.firstName + ' (' + r.patient.ssn + ')'}"></td>
+            <td th:text="${r.bodyRegion}"></td>
+            <td th:text="${#temporals.format(r.startDateTime, 'dd.MM.yyyy HH:mm')}"></td>
+            <td th:text="${#temporals.format(r.endDateTime, 'dd.MM.yyyy HH:mm')}"></td>
+            <td th:text="${r.comment}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <p>
+        <a th:href="@{'/reservation/add'}" class="btn btn-success">Neue Reservierung</a>
+        <a href="/device/list" class="btn btn-default">Zur Geräteliste</a>
+    </p>
+</div>
+</body>
+</html>

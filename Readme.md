@@ -1,7 +1,11 @@
 # Instructions to use the application
 * geben sie beim browser http://localhost:8080 ein um die Applikation zu öffnen
-* Drücken sie auf den button panzer list
-* dann auf panzer hinzufügen
-* geben Sie die Werte ein
-* Sie können den Panzer dann bearbeiten oder löschen
+* Klicken sie auf patient registrieren um einen neuen Patienten hinzuzufügen
+* Geben sie die Daten des Patienten ein und klicken sie auf speichern
+* Klicken sie auf Patientenliste um alle Patienten anzuzeigen
+* Klicken sie auf neue Reservierung um eine neue Reservierung hinzuzufügen
+* Geben sie die Daten der Reservierung ein und klicken sie auf speichern
+* Klicken sie auf gerät anlegen um ein neues Gerät hinzuzufügen
+* Geben sie die Daten des Geräts ein und klicken sie auf speichern
+* Klicken sie auf geräteliste um alle Geräte anzuzeigen
  
