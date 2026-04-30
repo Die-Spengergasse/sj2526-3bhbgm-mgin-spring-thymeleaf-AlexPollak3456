@@ -40,6 +40,10 @@ public class Patient {
 
     public void setSsn(String ssn) {
         this.ssn = ssn;
+        //error if ssn is not 10 characters long and has letters
+        if(ssn.length() != 10 || !ssn.matches("\\d{10}")){
+            throw new IllegalArgumentException("SSN must be exactly 10 digits long and contain only numbers");
+        }
     }
 
     public String getFirstName() {
@@ -47,6 +51,9 @@ public class Patient {
     }
 
     public void setFirstName(String firstName) {
+        if(firstName.equalsIgnoreCase("admin")){
+            throw new IllegalArgumentException("First name cannot be 'admin'");
+        }
         this.firstName = firstName;
     }
 
@@ -55,6 +62,9 @@ public class Patient {
     }
 
     public void setLastName(String lastName) {
+        if(lastName.equalsIgnoreCase("admin")){
+            throw new IllegalArgumentException("First name cannot be 'admin'");
+        }
         this.lastName = lastName;
     }
 
@@ -71,6 +81,10 @@ public class Patient {
     }
 
     public void setBirthDate(LocalDate birthDate) {
+        if(birthDate.isAfter(LocalDate.now())){
+            throw new IllegalArgumentException("Birth date cannot be in the future");
+        }
         this.birthDate = birthDate;
+
     }
 }

@@ -4,10 +4,8 @@ import at.spengergasse.spring_thymeleaf.entities.Patient;
 import at.spengergasse.spring_thymeleaf.entities.PatientRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/patient")
@@ -31,8 +29,16 @@ public class PatientController {
     }
 
     @PostMapping("/add")
-    public String addPatient(@ModelAttribute("patient") Patient patient) {
+    public String addPatient(@ModelAttribute("patient") Patient patient, BindingResult result) throws Exception {
+        if (result.hasErrors()) {
+            throw new Exception(result.getAllErrors().get(0).getDefaultMessage());
+        }
         patientRepository.save(patient);
         return  "redirect:/patient/list";
+    }
+    @ExceptionHandler(Exception.class)
+    public String handleException(Exception ex, Model model) {
+        model.addAttribute("errorMessage", ex.getMessage());
+        return "error";
     }
 }

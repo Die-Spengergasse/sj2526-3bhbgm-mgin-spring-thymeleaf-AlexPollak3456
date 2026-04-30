@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Datenbank nicht verfügbar</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container mt-5">
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Datenbankverbindung fehlgeschlagen</h4>
+        <p th:text="${dbErrorMessage}">Die Anwendung kann keine Verbindung zur Datenbank herstellen.</p>
+        <hr />
+        <p class="mb-0">Bitte starten Sie den MS SQL Server und versuchen Sie es erneut. <a th:href="@{/}">Zur Startseite</a></p>
+    </div>
+</div>
+</body>
+</html>

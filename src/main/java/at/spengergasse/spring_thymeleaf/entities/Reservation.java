@@ -57,7 +57,11 @@ public class Reservation {
     }
 
     public void setStartDateTime(LocalDateTime startDateTime) {
+
         this.startDateTime = startDateTime;
+        if (startDateTime.isBefore(LocalDateTime.now())) {
+            throw new IllegalArgumentException("Start date and time cannot be in the past");
+        }
     }
 
     public LocalDateTime getEndDateTime() {

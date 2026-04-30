@@ -43,7 +43,7 @@ public class DeviceController {
 
     @GetMapping("/edit")
     public String editDevice(@RequestParam int id, Model model) {
-        Device d = deviceRepository.findById(id).orElseThrow();
+        Device d = deviceRepository.findById(id);
         model.addAttribute("device", d);
         model.addAttribute("types", DeviceType.values());
         return "add_device";
